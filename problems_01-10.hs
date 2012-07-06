@@ -20,3 +20,8 @@ myLength :: [a] -> Int
 myLength = sum . map (const 1)
 --alternative:
 myLength' = foldr (\_ n -> n + 1) 0
+
+-- Problem 5:
+-- Reverse a list
+myReverse :: [a] -> [a]
+myReverse = foldl (flip (:)) []
