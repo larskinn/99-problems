@@ -25,3 +25,8 @@ myLength' = foldr (\_ n -> n + 1) 0
 -- Reverse a list
 myReverse :: [a] -> [a]
 myReverse = foldl (flip (:)) []
+
+-- Problem 6:
+-- Find out whether a list is a palindrome.
+isPalindrome :: Eq a => [a] -> Bool
+isPalindrome xs = xs == reverse xs
