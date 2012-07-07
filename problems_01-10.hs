@@ -30,3 +30,10 @@ myReverse = foldl (flip (:)) []
 -- Find out whether a list is a palindrome.
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome xs = xs == reverse xs
+
+-- Problem 7:
+-- Flatten a nested list structure. 
+data NestedList a = Elem a | List [NestedList a]
+flatten :: NestedList a -> [a]
+flatten (Elem x) = [x]
+flatten (List xs) = concat $ map flatten xs
