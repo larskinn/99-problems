@@ -37,3 +37,12 @@ data NestedList a = Elem a | List [NestedList a]
 flatten :: NestedList a -> [a]
 flatten (Elem x) = [x]
 flatten (List xs) = concat $ map flatten xs
+
+-- Problem 8:
+-- Eliminate consecutive duplicates of list elements.
+compress :: Eq a => [a] -> [a]
+compress = foldr noDups []
+           where noDups x [] = [x]
+                 noDups x (y:ys)
+                        | x == y    = y:ys
+                        | otherwise = x:y:ys
