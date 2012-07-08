@@ -41,3 +41,15 @@ repli xs n = rpl xs n
                  rpl ys@(y:_) m = y : rpl ys (m-1)
 -- or just
 repli' xs n = concatMap (replicate n) xs
+
+-- Problem 16:
+-- Drop every N'th element from a list. 
+dropEvery :: [a] -> Int -> [a]
+dropEvery xs n = drp xs n 1
+                 where drp [] _ _ = [] 
+                       drp (x:xs) n idx
+                           | idx == n = drp xs n 1
+                           | otherwise = x : drp xs n (idx+1)
+-- or using map, filter and zip:
+dropEvery' xs n = map snd $ filter ((/= 0) . (`mod` n) . fst) $ zip [1..] xs
+
