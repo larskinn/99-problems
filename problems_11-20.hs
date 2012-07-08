@@ -25,3 +25,19 @@ encodeDirect (x:xs) = enc 1 x xs
                                 | otherwise = encoded n current : enc 1 x xs
                             encoded 1 x = Single x
                             encoded n x = Multiple n x
+
+-- Problem 14:
+-- Duplicate the elements of a list.
+dupli :: [a] -> [a]
+dupli [] = []
+dupli (x:xs) = x : x : dupli xs
+
+-- Problem 15:
+-- Replicate the elements of a list a given number of times.
+repli :: [a] -> Int -> [a]
+repli xs n = rpl xs n
+           where rpl [] _ = []
+                 rpl (_:ys) 0 = rpl ys n
+                 rpl ys@(y:_) m = y : rpl ys (m-1)
+-- or just
+repli' xs n = concatMap (replicate n) xs
