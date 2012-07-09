@@ -53,3 +53,31 @@ dropEvery xs n = drp xs n 1
 -- or using map, filter and zip:
 dropEvery' xs n = map snd $ filter ((/= 0) . (`mod` n) . fst) $ zip [1..] xs
 
+
+-- Problem 17:
+-- Split a list into two parts; the length of the first part is given.
+-- Do not use any predefined predicates.
+myTake :: Int -> [a] -> [a]
+myTake _ [] = []
+myTake n (x:xs) | n > 0 = x : myTake (n-1) xs
+                | otherwise = []
+
+myDrop :: Int -> [a] -> [a]
+myDrop _ [] = []
+myDrop 0 xs = xs
+myDrop n (x:xs) | n > 0 = myDrop (n-1) xs
+                | otherwise = x:xs
+
+split :: [a] -> Int -> ([a], [a])
+split xs n = (myTake n xs, myDrop n xs)
+
+-- Problem 18:
+-- Extract a slice from i to k, inclusive, from a list. Start counting the elements with 1.
+slice :: [a] -> Int -> Int -> [a]
+slice xs i k = take (k-i+1) $ drop (i-1) xs
+
+-- Problem 19:
+-- Rotate a list N places to the left.
+rotate :: [a] -> Int -> [a]
+rotate xs n | n < 0 = rotate xs (length xs + n)
+            | otherwise = drop n xs ++ take n xs
