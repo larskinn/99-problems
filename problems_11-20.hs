@@ -81,3 +81,10 @@ slice xs i k = take (k-i+1) $ drop (i-1) xs
 rotate :: [a] -> Int -> [a]
 rotate xs n | n < 0 = rotate xs (length xs + n)
             | otherwise = drop n xs ++ take n xs
+
+-- Problem 20:
+-- Remove the K'th element from a list.
+removeAt :: Int -> [a] -> (a, [a])
+removeAt n xs = let start = take (n-1) xs
+                    end = drop (n-1) xs
+                in (head end, start ++ tail end)
